@@ -63,7 +63,7 @@ export default {
       ],
       mainItems: [],
       subItems: [
-        { result: '1', opponent_team: '1', match_details : '1', completed_on :'1', match_score : '1' }
+        // { result: '1', opponent_team: '1', match_details : '1', completed_on :'1', match_score : '1' }
       ]
     }
   },
@@ -76,6 +76,11 @@ export default {
     axios.get('http://localhost:3000/teams')
     .then((res)=>{
      this.mainItems= res.data
+    })
+     
+    axios.get('http://localhost:3000/team')
+    .then((res)=>{
+      this.subItems = res.data
     })
   }
 }

@@ -31,6 +31,57 @@
         "win_rate" : "100%",
         "score" : "7"
     }
+],
+
+"team" : [
+    { "result": "1",
+      "opponent_team": "1",
+      "match_details" : "1",
+      "completed_on" :"1",
+      "match_score" : "1" }
+],
+
+"leagues" : [
+    {"name" : "League 1 ",
+        "organizer": "XYZ",
+        "venue": "White Field Club",
+        "type": "KnockOut",
+        "city": "Banglore",
+        "status": "Upcoming",
+        "date" : "20 Jan 2019"
+    },
+    {"name" : "League 2",
+    "organizer": "XYZ",
+    "venue": "Gurukul",
+    "type": "Round Robin",
+    "city": "Banglore",
+    "status": "Upcoming",
+    "date" : "21 Jan 2019"
+    },
+    {"name" : "WSC Advance Players League",
+        "organizer": "XYZ",
+        "venue": "Gurukul",
+        "type": "Round Robin",
+        "city": "Banglore",
+        "status": "Upcoming",
+        "date" : "25 Jan 2019"
+    },
+    {"name" : "WSC Advance Players League",
+        "organizer": "XYZ",
+        "venue": "Gurukul",
+        "type": "Round Robin",
+        "city": "Banglore",
+        "status": "Upcoming",
+        "date" : "25 Jan 2019"
+    },
+    {"name" : "WSC Advance Players League",
+        "organizer": "XYZ",
+        "venue": "Gurukul",
+        "type": "Round Robin",
+        "city": "Banglore",
+        "status": "Upcoming",
+        "date" : "25 Jan 2019"
+    }
 ]
 
 }

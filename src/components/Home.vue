@@ -62,7 +62,7 @@
               <v-container id="div4" @click.stop>
                 <v-data-table
                   :headers="headers"
-                  :items="leagues_data"
+                  :items="data"
                   class="elevation-1"
                 >
                   <template slot="items" slot-scope="props">
@@ -107,11 +107,9 @@
 <script>
 import axios from 'axios'
 import Teams from './Teams'
-import leagues from './leagues.json'
   export default {
     components:{Teams},
     data: () => ({
-      leagues_data : leagues.leagues,
       flag : false,
       drawer: null,
       icons: [
@@ -157,7 +155,7 @@ import leagues from './leagues.json'
         { text: 'Status', value: 'status',sortable:false },
         { text: 'Date', value: 'date',sortable:false }
       ],
-      // data: []
+      data: []
     }),
     methods: {
       showTeams(a){
@@ -176,9 +174,9 @@ import leagues from './leagues.json'
                   this.flag=false;
               }
           });
-          axios.get('./leagues.json')
+          axios.get('http://localhost:3000/leagues')
           .then((res)=>{
-            console.log("hey" + res)
+            this.data = res.data
           })
       },
       props: {
