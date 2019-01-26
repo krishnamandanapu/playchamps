@@ -1,12 +1,12 @@
 <template>
-    <v-app id="inspire" v-if="show">
-      <h2>WSC Advanced Players League</h2>
+    <v-app id="teams" v-if="show">
+      <h2 style="color:deepskyblue">{{pass_data.name}}</h2>
  <v-data-table :headers="mainHeaders"
                :items="mainItems"
                item-key="position"
-               hide-actions
                expand
                class="elevation-1"
+               dark
                >
   <template slot="items" slot-scope="props">
     <tr @click="props.expanded = !props.expanded">
@@ -23,9 +23,11 @@
       <v-card-text>
         <v-data-table :headers="subHeaders"
                       :items="subItems"
-                      item-key="color"
+                      item-key="result"
+                      class="elevation-10"
+                      dark
                       hide-actions
-                      class="elevation-10">
+                      >
           <template slot="items" slot-scope="props">
             <td class="text-xs-left">{{ props.item.result }}</td>
             <td class="text-xs-left">{{ props.item.opponent_team }}</td>
@@ -44,6 +46,7 @@
 <script>
 import axios from 'axios'
 export default {
+    props : ['pass_data'],
     data () {
     return {
       show : true,
@@ -53,7 +56,7 @@ export default {
         { text: 'Matches Played', value: 'matches_played', sortable:false },
         { text: 'NPS', value: 'nps', sortable:false },
         { text: 'Win%', value: 'win_rate', sortable:false },
-        { text: 'Score%', value: 'score', sortable:false }
+        { text: 'Score', value: 'score', sortable:false }
       ],
       subHeaders: [
         { text: 'Result', value: 'result', sortable : false},
@@ -86,5 +89,16 @@ export default {
 </script>
 
 <style>
+/* .theme--dark.v-table tbody td, .theme--light.v-table tbody th{
+    color: #7CFC00;
+}
+.theme--dark.v-table {
+    background-color: transparent;
+}
+.theme--dark.v-table thead td, .theme--light.v-table thead th{
 
+} */
+#teams{
+  background-color: #424242;
+}
 </style>

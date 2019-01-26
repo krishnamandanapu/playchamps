@@ -2,7 +2,7 @@
   <v-app id="inspire">
     <div @click="closeform">
     <v-toolbar color="deep-purple darken-4" dark fixed app>
-      <v-toolbar-title>Play Champs</v-toolbar-title>
+      <v-toolbar-title><div id="logo"><img src= "./logo.jpg"></img> </div></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
       <v-icon>fa fa-search</v-icon>
@@ -15,12 +15,13 @@
         <v-layout >
           <v-flex>
             <v-card>
-              <!-- <v-img
-                id = "im"
+              <v-img
+                id = "img"
                 class="white--text"
                 height="700px"
-                src="https://cdn.vuetifyjs.com/images/cards/docks.jpg"
-              > -->
+                src="https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg"
+              > </v-img>
+              <div class="bg-text">
               <v-container id = "div1">
                 <h2>Manage Badminton League/Tournaments</h2>
                 <pre>     </pre>
@@ -29,11 +30,13 @@
                 </p>
               </v-container>
               <v-container id="div2">
-                <h2>Top Ranking Teams</h2>
+                <h3>Top Ranking Teams</h3>
+                <pre> </pre>
                 <v-data-table
+                  light
                   hide-actions
                   hide-headers
-                  :headers="headers"
+                  :headers="top_ranking_headers"
                   :items="top_ranks_data"
                   id = "top_ranking"
                 >
@@ -46,7 +49,8 @@
                 </v-data-table>
               </v-container>
               <v-container id="div3">
-                <h2>Top Ranking Players</h2>
+                <h3>Top Ranking Players</h3>
+                <pre> </pre>
                 <v-layout
                   align-center
                   justify-space-around
@@ -67,6 +71,7 @@
                   :headers="headers"
                   :items="leagues_data"
                   class="elevation-1"
+                  hide-actions
                 >
                   <template slot="items" slot-scope="props">
                     <tr @click="showTeams(props.item)">
@@ -77,15 +82,17 @@
                     <td class="text-xs-left">{{ props.item.city }}</td>
                     <td class="text-xs-left">{{ props.item.status }}</td>
                     <td class="text-xs-left">{{ props.item.date }}</td>
+                    <td> <div @click.stop> <v-btn small round color="primary" dark @click="register()">Register</v-btn></div></td>
                     </tr>
                   </template>
                 </v-data-table>
               </v-container>
               <v-container @click.stop>
                 <div @click.stop class="form">
-                    <Teams v-if="flag" class="pop"></Teams>
+                    <Teams v-if="flag" :pass_data = "pass_data" class="pop"></Teams>
                 </div>
               </v-container>
+              </div>
               <!-- </v-img> -->
             </v-card>
           </v-flex>
@@ -113,16 +120,16 @@ import Teams from './Teams'
   export default {
     components:{Teams},
     data: () => ({
+      pass_data : '',
       flag : false,
       drawer: null,
       icons: [
         'mdi-facebook',
         'mdi-twitter',
-        'mdi-google-plus',
         'mdi-linkedin',
-        'mdi-instagram'
+        'mdi-github-circle'
       ],
-      headers: [
+      top_ranking_headers: [
         {
           text: 'Top Ranking Teams',
           align: 'left',
@@ -149,13 +156,17 @@ import Teams from './Teams'
     }),
     methods: {
       showTeams(a){
-        // if (event.target.classList.contains('btn__content')) return;
+        if (event.target.classList.contains('btn__content')) return;
         // alert('Alert! \n' + a.name);
+        this.pass_data = a
         this.flag = true
 
       },
       closeform(){
         this.flag = false
+      },
+      register(){
+        alert("coming Soon")
       }
     },
     mounted: function () {
@@ -180,12 +191,26 @@ import Teams from './Teams'
 </script>
 <style>
 #img{
-  opacity: .4;
+  /* opacity: .4; */
+  /* Add the blur effect */
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  
+  /* Full height */
+  height: 100%; 
+  
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+h3{
+  color: #7CFC00;
 }
 #div1{
-  margin-left: -0px;
+  margin-left: 0px;
   max-width: 35%;
-
+  /* margin-top: 7%; */
 }
 #div2{
   margin-left: 35%;
@@ -194,10 +219,10 @@ import Teams from './Teams'
 }
 #div3{
   margin-left: 40%;
-  margin-top: -13%;
+  margin-top: -14.5%;
 }
 #avatar{
-  margin-left: 25%;
+  /* margin-left: 20%; */
 }
 #div4{
   margin-top: 5%;
@@ -211,7 +236,7 @@ import Teams from './Teams'
   left: 0%;
   width: 70%;
   margin: 0px auto;
-  max-height: 52%;
+  max-height: 65%;
   padding: 20px 30px;
   padding-right: -50px;
   background-color: #fff;
@@ -221,6 +246,51 @@ import Teams from './Teams'
 }
 #top_ranking tbody td {
     height: 19px;
+}
+table.v-table tbody td, table.v-table tbody th {
+  color: deepskyblue;
+}
+table.v-table thead td, table.v-table thead th {
+  color: red;
+}
+.bg-image {
+  filter: blur(8px);
+  -webkit-filter: blur(8px);
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-text {
+  background-color: rgb(0,0,0); 
+  background-color: rgba(0,0,0, 0.4); 
+  color: white;
+  /* font-weight: bold; */
+  position: relative;
+  margin-top: -42%;
+  /* top: 50%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%);  */
+  /* z-index: 2; */
+  width: 100%;
+  padding: 20px;
+  text-align: center;
+}
+.theme--light.v-table {
+    background-color: transparent;
+}
+.theme--light.v-table thead td, .theme--light.v-table thead th{
+    color: #7CFC00;
+    font: bold;
+    font-size: 15px;
+}
+#logo{
+  margin-top: 9%;
+  /* max-height: 50px; */
+}
+img{
+  max-height: 74px;
 }
 
 </style>
