@@ -25,7 +25,7 @@
                 <h2>Manage Badminton League/Tournaments</h2>
                 <pre>     </pre>
                 <p>
-                  Register for free and try our features to schedule, manage and monitor badminton leagues in few easy steps online, PlayChamps is built for computer, Tsblets and mobiles.
+                  Register for free and try our features to schedule, manage and monitor badminton leagues in few easy steps online, PlayChamps is built for computer, Tablets and mobiles.
                 </p>
               </v-container>
               <v-container id="div2">
@@ -34,11 +34,14 @@
                   hide-actions
                   hide-headers
                   :headers="headers"
-                  :items="desserts"
+                  :items="top_ranks_data"
+                  id = "top_ranking"
                 >
                   <template slot="items" slot-scope="props">
-                    <td>{{props.item.rank}}</td>
-                    <td>{{ props.item.name }}</td>
+                    <tr style="height: 1%;">
+                    <td class="text-xs-right">{{props.item.rank}}</td>
+                    <td class="text-xs-left">{{ props.item.name }}</td>
+                    </tr>
                   </template>
                 </v-data-table>
               </v-container>
@@ -62,7 +65,7 @@
               <v-container id="div4" @click.stop>
                 <v-data-table
                   :headers="headers"
-                  :items="data"
+                  :items="leagues_data"
                   class="elevation-1"
                 >
                   <template slot="items" slot-scope="props">
@@ -127,20 +130,7 @@ import Teams from './Teams'
           value: 'name'
         },
       ],
-      desserts: [
-        {
-          name: 'Frozen Yogurt',
-          rank : 1
-        },
-        {
-          name: 'Ice cream sandwich',
-          rank : 2
-        },
-        {
-          name: 'Eclair',
-          rank : 3
-        },
-      ],
+      top_ranks_data: [],
       headers: [
         {
           text: 'League Name',
@@ -155,7 +145,7 @@ import Teams from './Teams'
         { text: 'Status', value: 'status',sortable:false },
         { text: 'Date', value: 'date',sortable:false }
       ],
-      data: []
+      leagues_data: []
     }),
     methods: {
       showTeams(a){
@@ -176,7 +166,11 @@ import Teams from './Teams'
           });
           axios.get('http://localhost:3000/leagues')
           .then((res)=>{
-            this.data = res.data
+            this.leagues_data = res.data
+          })
+          axios.get('http://localhost:3000/top')
+          .then((res)=>{
+            this.top_ranks_data = res.data
           })
       },
       props: {
@@ -200,7 +194,7 @@ import Teams from './Teams'
 }
 #div3{
   margin-left: 40%;
-  margin-top: -15%;
+  margin-top: -13%;
 }
 #avatar{
   margin-left: 25%;
@@ -217,7 +211,7 @@ import Teams from './Teams'
   left: 0%;
   width: 70%;
   margin: 0px auto;
-  max-height: 50%;
+  max-height: 52%;
   padding: 20px 30px;
   padding-right: -50px;
   background-color: #fff;
@@ -225,8 +219,8 @@ import Teams from './Teams'
   margin: 12% 5%;
 
 }
-.form{
-    /* height:40px; */
+#top_ranking tbody td {
+    height: 19px;
 }
 
 </style>

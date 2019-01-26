@@ -1,11 +1,13 @@
 <template>
     <v-app id="inspire" v-if="show">
+      <h2>WSC Advanced Players League</h2>
  <v-data-table :headers="mainHeaders"
                :items="mainItems"
                item-key="position"
                hide-actions
                expand
-               class="elevation-1">
+               class="elevation-1"
+               >
   <template slot="items" slot-scope="props">
     <tr @click="props.expanded = !props.expanded">
       <td class="text-xs-left">{{ props.item.position }}</td>
@@ -19,7 +21,6 @@
   <template slot="expand" slot-scope="props">
     <v-card class="elevation-10">
       <v-card-text>
-
         <v-data-table :headers="subHeaders"
                       :items="subItems"
                       item-key="color"
@@ -62,9 +63,7 @@ export default {
         { text: 'Match Score', value: 'match_score', sortable : false },
       ],
       mainItems: [],
-      subItems: [
-        // { result: '1', opponent_team: '1', match_details : '1', completed_on :'1', match_score : '1' }
-      ]
+      subItems: []
     }
   },
   methods:{
