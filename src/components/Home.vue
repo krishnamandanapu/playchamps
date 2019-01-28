@@ -18,7 +18,7 @@
             <v-img
                 id = "bg-img"
                 class="white--text"
-                height="700px"
+                height="100%"
                 src="https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg"
               > </v-img>
           </v-flex>
@@ -188,44 +188,12 @@ import Teams from './Teams'
   }
 </script>
 <style>
-#bg-img{
-  /* opacity: .4; */
-  /* Add the blur effect */
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-  
-  /* Full height */
-  height: 100%; 
-  
-  /* Center and scale the image nicely */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 h3{
   color: #7CFC00;
 }
-#div1{
-  margin-left: 0px;
-  max-width: 35%;
-  /* margin-top: 7%; */
-}
-#div2{
-  margin-left: 35%;
-  max-width: 20%;
-  margin-top: -12%;
-}
-#div3{
-  margin-left: 40%;
-  margin-top: -14.5%;
-}
 #avatar{
   /* margin-left: 20%; */
-}
-#div4{
-  margin-top: 5%;
-  max-width: 80%;
-  margin-left: 0%;
 }
 .pop {
   position: absolute;
@@ -251,7 +219,7 @@ table.v-table tbody td, table.v-table tbody th {
 table.v-table thead td, table.v-table thead th {
   color: red;
 }
-.bg-image {
+#bg-img{
   filter: blur(8px);
   -webkit-filter: blur(8px);
   height: 100%; 
@@ -259,17 +227,16 @@ table.v-table thead td, table.v-table thead th {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .bg-text {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   color: white;
   font-weight: bold;
   position: absolute;
-  top: 50%;
+  top: 32%;
   left: 50%;
   transform: translate(-50%, -50%);
-  z-index: 2;
+  /* z-index: 2; */
   width: 80%;
   padding: 20px;
   text-align: center;
