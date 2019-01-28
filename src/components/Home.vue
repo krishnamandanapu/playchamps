@@ -1,8 +1,7 @@
 <template>
   <v-app id="inspire">
-    <div @click="closeform">
     <v-toolbar color="deep-purple darken-4" dark fixed app>
-      <v-toolbar-title><div id="logo"><img src= "./logo.jpg"></img> </div></v-toolbar-title>
+      <v-toolbar-title><div id="logo"><img src= "./logo.jpg"/></div></v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
       <v-icon>fa fa-search</v-icon>
@@ -11,93 +10,94 @@
         Login
       </v-btn>
     </v-toolbar>
-    <!-- <v-content> -->
-        <v-layout >
+    
+    <v-content  >
+      <!-- <v-container> -->
+        <v-layout @click="closeform">
           <v-flex>
-            <v-card>
-              <v-img
-                id = "img"
+            <v-img
+                id = "bg-img"
                 class="white--text"
                 height="700px"
                 src="https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg"
               > </v-img>
-              <div class="bg-text">
-              <v-container id = "div1">
-                <h2>Manage Badminton League/Tournaments</h2>
-                <pre>     </pre>
-                <p>
-                  Register for free and try our features to schedule, manage and monitor badminton leagues in few easy steps online, PlayChamps is built for computer, Tablets and mobiles.
-                </p>
-              </v-container>
-              <v-container id="div2">
-                <h3>Top Ranking Teams</h3>
-                <pre> </pre>
-                <v-data-table
-                  light
-                  hide-actions
-                  hide-headers
-                  :headers="top_ranking_headers"
-                  :items="top_ranks_data"
-                  id = "top_ranking"
-                >
-                  <template slot="items" slot-scope="props">
-                    <tr style="height: 1%;">
-                    <td class="text-xs-right">{{props.item.rank}}</td>
-                    <td class="text-xs-left">{{ props.item.name }}</td>
-                    </tr>
-                  </template>
-                </v-data-table>
-              </v-container>
-              <v-container id="div3">
-                <h3>Top Ranking Players</h3>
-                <pre> </pre>
-                <v-layout
-                  align-center
-                  justify-space-around
-                  wrap
-                >
-                <div  v-for="item in ['https://cdn.vuetifyjs.com/images/lists/3.jpg']" :key="item">
-                  <v-avatar color="indigo">
-                  <img
-                    :src= item
-                  >
-                </v-avatar>
-                </div>
-                
-                </v-layout>
-              </v-container>
-              <v-container id="div4" @click.stop>
-                <v-data-table
-                  :headers="headers"
-                  :items="leagues_data"
-                  class="elevation-1"
-                  hide-actions
-                >
-                  <template slot="items" slot-scope="props">
-                    <tr @click="showTeams(props.item)">
-                    <td class="text-xs-left">{{ props.item.name }}</td>
-                    <td class="text-xs-left">{{ props.item.organizer }}</td>
-                    <td class="text-xs-left">{{ props.item.venue }}</td>
-                    <td class="text-xs-left">{{ props.item.type }}</td>
-                    <td class="text-xs-left">{{ props.item.city }}</td>
-                    <td class="text-xs-left">{{ props.item.status }}</td>
-                    <td class="text-xs-left">{{ props.item.date }}</td>
-                    <td> <div @click.stop> <v-btn small round color="primary" dark @click="register()">Register</v-btn></div></td>
-                    </tr>
-                  </template>
-                </v-data-table>
-              </v-container>
-              <v-container @click.stop>
-                <div @click.stop class="form">
-                    <Teams v-if="flag" :pass_data = "pass_data" class="pop"></Teams>
-                </div>
-              </v-container>
-              </div>
-              <!-- </v-img> -->
-            </v-card>
           </v-flex>
         </v-layout>
-    <!-- </v-content> -->
+      <!-- </v-container> -->
+    <v-container grid-list-md text-xs-center class="bg-text" @click="closeform"> 
+      <v-layout row wrap>
+      <v-flex xs4>
+        <h2>Manage Badminton League/Tournaments</h2>
+        <pre>     </pre>
+        <p>
+          Register for free and try our features to schedule, manage and monitor badminton leagues in few easy steps online, PlayChamps is built for computer, Tablets and mobiles.
+        </p>
+      </v-flex>
+      <v-flex xs4>
+        <h3>Top Ranking Teams</h3>
+        <pre> </pre>
+        <v-data-table
+          light
+          hide-actions
+          hide-headers
+          :headers="top_ranking_headers"
+          :items="top_ranks_data"
+          id = "top_ranking"
+        >
+          <template slot="items" slot-scope="props">
+            <tr style="height: 1%;">
+            <td class="text-xs-right">{{props.item.rank}}</td>
+            <td class="text-xs-left">{{ props.item.name }}</td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-flex>
+      <v-flex xs4>
+        <h3>Top Ranking Players</h3>
+        <pre> </pre>
+        <v-layout
+          align-center
+          justify-space-around
+          wrap
+        >
+        <div  v-for="item in ['https://cdn.vuetifyjs.com/images/lists/3.jpg']" :key="item">
+          <v-avatar color="indigo">
+          <img
+            :src= item
+          >
+        </v-avatar>
+        </div>
+        
+        </v-layout>
+      </v-flex>
+      <v-flex xs12 @click.stop>
+         <v-data-table
+          :headers="headers"
+          :items="leagues_data"
+          class="elevation-1"
+        >
+          <template slot="items" slot-scope="props">
+            <tr @click="showTeams(props.item)">
+            <td class="text-xs-left">{{ props.item.name }}</td>
+            <td class="text-xs-left">{{ props.item.organizer }}</td>
+            <td class="text-xs-left">{{ props.item.venue }}</td>
+            <td class="text-xs-left">{{ props.item.leagueType }}</td>
+            <td class="text-xs-left">{{ props.item.city }}</td>
+            <td class="text-xs-left">{{ props.item.status }}</td>
+            <td class="text-xs-left">{{ props.item.startDate }}</td>
+            <td> <div @click.stop> <v-btn small round color="primary" dark @click="register()">Register</v-btn></div></td>
+            </tr>
+          </template>
+        </v-data-table>
+      </v-flex>
+      <v-container @click.stop>
+        <div @click.stop class="form">
+            <Teams v-if="flag" :pass_data = "pass_data" class="pop"></Teams>
+        </div>
+      </v-container>
+      </v-layout>
+    </v-container>
+    </v-content>
     <v-footer color="deep-purple darken-4" app height="auto">
         <v-spacer></v-spacer>
           <v-btn
@@ -110,7 +110,6 @@
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn>
     </v-footer>
-    </div>
   </v-app>
 </template>
 
@@ -147,18 +146,17 @@ import Teams from './Teams'
         },
         { text: 'Organizer', value: 'organizer',sortable:false},
         { text: 'Venue', value: 'venue',sortable:false },
-        { text: 'Type', value: 'type',sortable:false },
+        { text: 'Type', value: 'leagueType',sortable:false },
         { text: 'City', value: 'city',sortable:false },
         { text: 'Status', value: 'status',sortable:false },
-        { text: 'Date', value: 'date',sortable:false }
+        { text: 'Date', value: 'startDate',sortable:false }
       ],
       leagues_data: []
     }),
     methods: {
       showTeams(a){
         if (event.target.classList.contains('btn__content')) return;
-        // alert('Alert! \n' + a.name);
-        this.pass_data = a
+        this.pass_data = a.id
         this.flag = true
 
       },
@@ -175,7 +173,7 @@ import Teams from './Teams'
                   this.flag=false;
               }
           });
-          axios.get('http://localhost:3000/leagues')
+          axios.get('http://api.playchamps.in/api/leagues')
           .then((res)=>{
             this.leagues_data = res.data
           })
@@ -190,7 +188,7 @@ import Teams from './Teams'
   }
 </script>
 <style>
-#img{
+#bg-img{
   /* opacity: .4; */
   /* Add the blur effect */
   filter: blur(8px);
@@ -234,14 +232,14 @@ h3{
   top: 0;
   /* bottom :10%; */
   left: 0%;
-  width: 70%;
+  width: 95%;
   margin: 0px auto;
-  max-height: 65%;
+  max-height: 75%;
   padding: 20px 30px;
   padding-right: -50px;
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
-  margin: 12% 5%;
+  margin: 5% 5%;
 
 }
 #top_ranking tbody td {
@@ -263,22 +261,25 @@ table.v-table thead td, table.v-table thead th {
 }
 
 .bg-text {
-  background-color: rgb(0,0,0); 
-  background-color: rgba(0,0,0, 0.4); 
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   color: white;
-  /* font-weight: bold; */
-  position: relative;
-  margin-top: -42%;
-  /* top: 50%; */
-  /* left: 50%; */
-  /* transform: translate(-50%, -50%);  */
-  /* z-index: 2; */
-  width: 100%;
+  font-weight: bold;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  width: 80%;
   padding: 20px;
   text-align: center;
 }
 .theme--light.v-table {
     background-color: transparent;
+}
+.theme--light.v-datatable .v-datatable__actions {
+  color: #7CFC00;
+  background-color: transparent;
 }
 .theme--light.v-table thead td, .theme--light.v-table thead th{
     color: #7CFC00;
@@ -291,6 +292,9 @@ table.v-table thead td, table.v-table thead th {
 }
 img{
   max-height: 74px;
+}
+.leagues_table{
+  max-width: 50%;
 }
 
 </style>
