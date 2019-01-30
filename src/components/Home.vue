@@ -1,5 +1,6 @@
 <template>
-  <v-app id="inspire">
+  <v-app id="inspire" >
+    <div @click="closeform">
     <v-toolbar color="deep-purple darken-4" dark fixed app>
       <v-toolbar-title><div id="logo"><img src= "./logo.jpg"/></div></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -11,19 +12,7 @@
       </v-btn>
     </v-toolbar>
     
-    <v-content  >
-      <!-- <v-container> -->
-        <v-layout @click="closeform">
-          <v-flex>
-            <v-img
-                id = "bg-img"
-                class="white--text"
-                height="100%"
-                src="https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg"
-              > </v-img>
-          </v-flex>
-        </v-layout>
-      <!-- </v-container> -->
+    <v-content id="bg-img" style="background-image: url('https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg');" @click="closeform" >
     <v-container grid-list-md text-xs-center class="bg-text" @click="closeform"> 
       <v-layout row wrap>
       <v-flex xs4>
@@ -71,10 +60,23 @@
         </v-layout>
       </v-flex>
       <v-flex xs12 @click.stop>
+        <v-card id="leagues_table">
+        <v-card-title>
+          Leagues
+          <v-spacer></v-spacer>
+          <v-text-field
+            v-model="search"
+            append-icon="search"
+            label="Search"
+            single-line
+            hide-details
+          ></v-text-field>
+        </v-card-title>
          <v-data-table
           :headers="headers"
           :items="leagues_data"
           class="elevation-1"
+          :search="search"
         >
           <template slot="items" slot-scope="props">
             <tr @click="showTeams(props.item)">
@@ -84,11 +86,15 @@
             <td class="text-xs-left">{{ props.item.leagueType }}</td>
             <td class="text-xs-left">{{ props.item.city }}</td>
             <td class="text-xs-left">{{ props.item.status }}</td>
-            <td class="text-xs-left">{{ props.item.startDate }}</td>
+            <td class="text-xs-left">{{ moment(props.item.startDate).format('MMM Do YYYY, h:mma') }}</td>
             <td> <div @click.stop> <v-btn small round color="primary" dark @click="register()">Register</v-btn></div></td>
             </tr>
           </template>
+          <v-alert slot="no-results" :value="true" color="error" icon="warning">
+            Your search for "{{ search }}" found no results.
+          </v-alert>
         </v-data-table>
+        </v-card>
       </v-flex>
       <v-container @click.stop>
         <div @click.stop class="form">
@@ -97,6 +103,18 @@
       </v-container>
       </v-layout>
     </v-container>
+    <!-- <v-container> -->
+        <!-- <v-layout @click="closeform">
+          <v-flex>
+            <v-img
+                id = "bg-img"
+                class="white--text"
+                height="100%"
+                src="https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg"
+              > </v-img>
+          </v-flex>
+        </v-layout> -->
+      <!-- </v-container> -->
     </v-content>
     <v-footer color="deep-purple darken-4" app height="auto">
         <v-spacer></v-spacer>
@@ -110,15 +128,19 @@
             <v-icon size="24px">{{ icon }}</v-icon>
           </v-btn>
     </v-footer>
+    </div>
   </v-app>
 </template>
 
 <script>
 import axios from 'axios'
 import Teams from './Teams'
+var moment = require('moment')
   export default {
     components:{Teams},
     data: () => ({
+      moment : moment,
+      search : '',
       pass_data : '',
       flag : false,
       drawer: null,
@@ -141,15 +163,14 @@ import Teams from './Teams'
         {
           text: 'League Name',
           align: 'left',
-          sortable: false,
           value: 'name'
         },
-        { text: 'Organizer', value: 'organizer',sortable:false},
-        { text: 'Venue', value: 'venue',sortable:false },
-        { text: 'Type', value: 'leagueType',sortable:false },
-        { text: 'City', value: 'city',sortable:false },
-        { text: 'Status', value: 'status',sortable:false },
-        { text: 'Date', value: 'startDate',sortable:false }
+        { text: 'Organizer', value: 'organizer'},
+        { text: 'Venue', value: 'venue' },
+        { text: 'Type', value: 'leagueType' },
+        { text: 'City', value: 'city' },
+        { text: 'Status', value: 'status' },
+        { text: 'Date', value: 'startDate' }
       ],
       leagues_data: []
     }),
@@ -202,7 +223,7 @@ h3{
   left: 0%;
   width: 95%;
   margin: 0px auto;
-  max-height: 75%;
+  max-height: 96%;
   padding: 20px 30px;
   padding-right: -50px;
   background-color: #fff;
@@ -215,30 +236,30 @@ h3{
 }
 table.v-table tbody td, table.v-table tbody th {
   color: deepskyblue;
+  cursor: pointer;
 }
 table.v-table thead td, table.v-table thead th {
   color: red;
 }
 #bg-img{
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
+  /* filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
   height: 100%; 
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .bg-text {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */
   color: white;
-  font-weight: bold;
-  position: absolute;
-  top: 32%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
+  /* top: 32%; */
+  /* left: 50%; */
+  /* transform: translate(-50%, -50%); */
   /* z-index: 2; */
-  width: 80%;
-  padding: 20px;
+  width: 100%;
   text-align: center;
 }
 .theme--light.v-table {
@@ -253,6 +274,13 @@ table.v-table thead td, table.v-table thead th {
     font: bold;
     font-size: 15px;
 }
+.v-datatable__actions__select .v-select__selections .v-select__selection--comma {
+    font-size: 12px;
+    color: #7CFC00 !important;
+}
+.theme--light.v-datatable thead th.column.sortable.active, .theme--light.v-datatable thead th.column.sortable.active .v-icon, .theme--light.v-datatable thead th.column.sortable:hover {
+    color: #7CFC00;
+}
 #logo{
   margin-top: 9%;
   /* max-height: 50px; */
@@ -263,5 +291,11 @@ img{
 .leagues_table{
   max-width: 50%;
 }
-
+#leagues_table{
+  background: transparent;
+  color: deepskyblue;
+}
+.theme--light.v-input:not(.v-input--is-disabled) input, .theme--light.v-input:not(.v-input--is-disabled) textarea {
+    color: deepskyblue;
+}
 </style>
