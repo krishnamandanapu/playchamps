@@ -208,10 +208,6 @@ var moment = require('moment')
   }
 </script>
 <style>
-@media (min-width : 400px) and (max-height : 500px){
-  body{background : red}
-}
-
 #inspire{
   background-position: center;
   background-repeat: no-repeat;
