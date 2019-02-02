@@ -1,6 +1,6 @@
 <template>
-  <v-app id="inspire" >
-    <div @click="closeform">
+  <v-app id="inspire" class="hey" style="background-image: url('https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg');">
+    <div @click="closeform" >
     <v-toolbar color="deep-purple darken-4" dark fixed app>
       <v-toolbar-title><div id="logo"><img src= "./logo.jpg"/></div></v-toolbar-title>
       <v-spacer></v-spacer>
@@ -12,7 +12,7 @@
       </v-btn>
     </v-toolbar>
     
-    <v-content id="bg-img" style="background-image: url('https://image.shutterstock.com/image-photo/set-badminton-shuttlecock-feather-professional-450w-1030859371.jpg');" @click="closeform" >
+    <v-content  @click="closeform" >
     <v-container grid-list-md text-xs-center class="bg-text" @click="closeform"> 
       <v-layout row wrap>
       <v-flex xs4>
@@ -179,7 +179,6 @@ var moment = require('moment')
         if (event.target.classList.contains('btn__content')) return;
         this.pass_data = a.id
         this.flag = true
-
       },
       closeform(){
         this.flag = false
@@ -209,7 +208,15 @@ var moment = require('moment')
   }
 </script>
 <style>
+@media (min-width : 400px) and (max-height : 500px){
+  body{background : red}
+}
 
+#inspire{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 h3{
   color: #7CFC00;
 }
@@ -229,7 +236,6 @@ h3{
   background-color: #fff;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   margin: 5% 5%;
-
 }
 #top_ranking tbody td {
     height: 19px;
@@ -249,7 +255,6 @@ table.v-table thead td, table.v-table thead th {
   background-repeat: no-repeat;
   background-size: cover;
 }
-
 .bg-text {
   background-color: rgb(0,0,0); /* Fallback color */
   background-color: rgba(0,0,0, 0.4); /* Black w/opacity/see-through */

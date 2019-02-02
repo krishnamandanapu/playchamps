@@ -88,7 +88,7 @@ export default {
              legend: {
               orient: 'vertical', // 'vertical'
               x: 'left', // 'center' | 'left' | {number},
-              y: 'top', // 'center' | 'bottom' | {number}
+              y: '15px', // 'center' | 'bottom' | {number}
               backgroundColor: '#eee',
               borderColor: 'rgba(178,34,34,0.8)',
               borderWidth: 4,
@@ -214,7 +214,7 @@ export default {
 #echart1{
     width: 150px;
     height: 150px;
-    left: 0%;
+    left: 10%;
     top: -15px;
 }
 #expanded_table{

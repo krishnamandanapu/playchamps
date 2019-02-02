@@ -19,4 +19,12 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
 }
+#bg-img{
+  /* filter: blur(8px); */
+  /* -webkit-filter: blur(8px); */
+  height: 100%; 
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
 </style>
