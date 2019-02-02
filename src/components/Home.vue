@@ -15,14 +15,14 @@
     <v-content  @click="closeform" >
     <v-container grid-list-md text-xs-center class="bg-text" @click="closeform"> 
       <v-layout row wrap>
-      <v-flex xs4>
+      <v-flex md4 xs12>
         <h2>Manage Badminton League/Tournaments</h2>
         <pre>     </pre>
         <p>
           Register for free and try our features to schedule, manage and monitor badminton leagues in few easy steps online, PlayChamps is built for computer, Tablets and mobiles.
         </p>
       </v-flex>
-      <v-flex xs4>
+      <v-flex md4 xs12>
         <h3>Top Ranking Teams</h3>
         <pre> </pre>
         <v-data-table
@@ -41,7 +41,7 @@
           </template>
         </v-data-table>
       </v-flex>
-      <v-flex xs4>
+      <v-flex md4 xs12>
         <h3>Top Ranking Players</h3>
         <pre> </pre>
         <v-layout
@@ -59,7 +59,7 @@
         
         </v-layout>
       </v-flex>
-      <v-flex xs12 @click.stop>
+      <v-flex md12 xs12 @click.stop>
         <v-card id="leagues_table">
         <v-card-title>
           Leagues
@@ -208,6 +208,10 @@ var moment = require('moment')
   }
 </script>
 <style>
+@media screen and (min-width : 400px) and (max-height : 500px){
+
+}
+
 #inspire{
   background-position: center;
   background-repeat: no-repeat;
